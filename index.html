@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tycoon Demo · 经营轻策略原型</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header id="topbar">
+    <div class="res"><span>💰</span><b id="coins">0</b></div>
+    <div class="res"><span>⚡</span><b id="spins">0</b><small id="regen"></small></div>
+    <div class="res"><span>🛡️</span><b id="shields">0</b></div>
+    <div class="res"><span>🎡</span>园区收入 <b id="parkIncome">0</b>/秒</div>
+    <div class="res"><span>🚶</span>客流 <b id="arrivalRate">0</b>/秒<small id="layoutBonus"></small></div>
+    <div class="res warn"><span>😠</span>流失游客 <b id="lost">0</b></div>
+    <div id="dayInfo"></div>
+  </header>
+
+  <main>
+    <section id="parkPanel">
+      <div class="panel-title">
+        <h2>我的游乐园</h2>
+        <span id="moveHint" class="hint hidden">选择目标格子（空地移动 / 设施互换）<button id="cancelMove">取消</button></span>
+      </div>
+      <div id="parkArea">
+        <div id="grid"></div>
+        <div id="gate">🎪 乐园大门 🎪</div>
+        <div id="walkers"></div>
+      </div>
+      <p class="tip" id="strategyTip">提示：同主题设施相邻，每个邻居 +20% 收入；按当日客流偏好建造，游客才会付全价。</p>
+    </section>
+
+    <section id="sidePanel">
+      <div id="slot">
+        <div class="reels">
+          <div class="reel">💰</div><div class="reel">🐻</div><div class="reel">⚡</div>
+        </div>
+        <div id="revenge" class="hidden"></div>
+        <div class="slot-controls">
+          <button id="betBtn">押注 ×1</button>
+          <button id="spinBtn">SPIN</button>
+        </div>
+        <div id="slotResult">拉一下试试手气</div>
+      </div>
+
+      <div class="card">
+        <h3>邻居乐园（机器人）</h3>
+        <ul id="rivals"></ul>
+      </div>
+
+      <div class="card">
+        <h3>实验开关</h3>
+        <label><input type="checkbox" id="tglStrategy"> 经营轻策略（相邻加成 + 游客偏好）</label>
+        <label><input type="checkbox" id="tglSocial"> 社交保底（损失上限 + 复仇券）</label>
+        <div class="row">
+          <button id="exportBtn">导出试玩数据</button>
+          <button id="resetBtn" class="danger">重新开始</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>日志</h3>
+        <ul id="log"></ul>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal" class="hidden">
+    <div class="modal-box">
+      <h3 id="modalTitle"></h3>
+      <div id="modalBody"></div>
+      <div id="modalButtons"></div>
+    </div>
+  </div>
+  <div id="toasts"></div>
+  <div id="fx"></div>
+
+  <script src="config.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
